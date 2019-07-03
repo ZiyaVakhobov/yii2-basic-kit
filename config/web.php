@@ -1,5 +1,7 @@
 <?php
 
+use app\components\managers\AuthManager;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -14,19 +16,24 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => \app\src\admin\Admin::class,
-            'layout' => "@admin/views/layouts/main"
+            'layout' => "@admin/views/layouts/main",
         ],
     ],
+
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'JF8ABO0YE5hKrA-jt_xHq9vopNLIs9DA',
         ],
+        'auth' => [
+            'class'=>AuthManager::class,
+            'cache' => 'cache'
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\Users',
+            'identityClass' => \app\models\User::class,
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

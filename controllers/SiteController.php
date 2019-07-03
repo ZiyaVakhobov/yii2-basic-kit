@@ -7,7 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use app\forms\LoginForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -58,9 +58,11 @@ class SiteController extends Controller
      * Displays homepage.
      *
      * @return string
+     * @throws \app\components\exceptions\HttpNotAllowedException
      */
     public function actionIndex()
     {
+        Yii::$app->auth->can('userAccess');
         return $this->render('index');
     }
 
@@ -77,7 +79,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(['site/index']);
         }
 
         $model->password = '';
