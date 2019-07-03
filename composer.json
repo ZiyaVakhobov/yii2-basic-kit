@@ -44,7 +44,11 @@
         "alexantr/yii2-elfinder": "1.7.0",
         "yii2mod/yii2-swagger": "1.1.1",
         "wbraganca/yii2-dynamicform": "2.0.2",
-        "2amigos/yii2-highcharts-widget": "1.0.3"
+        "2amigos/yii2-highcharts-widget": "1.0.3",
+        "loveorigami/yii2-modal-ajax": "3.8",
+        "ziya/clock-picker": "0.1",
+        "unclead/yii2-multiple-input": "2.21.5",
+        "vlucas/phpdotenv": "^3.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
