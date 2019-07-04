@@ -6,11 +6,11 @@
                 'items' => [
                     [
                         'label' => 'Admin',
-                        'visible'=>Yii::$app->auth->canAccess('canAccessAdmin'),
+                        'visible'=>Yii::$app->auth->checkAccess(['canAccessAdmin']),
                         'icon' => 'group',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Index', 'icon' => 'id-card', 'url' => ['auth/index'],],
+                            ['label' => 'Index', 'icon' => 'id-card', 'url' => ['/user/auth/index'],],
                         ],
                     ],
 //                    [

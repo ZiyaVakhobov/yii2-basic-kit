@@ -18,6 +18,7 @@ class Admin extends \yii\base\Module
     {
         parent::init();
         \Yii::$app->homeUrl = Url::to('/admin');
+       // \Yii::$app->urlManager->baseUrl = Url::to('/admin');
         $this->modules = [
             'user' => [
                 'class' => 'app\src\admin\modules\user\User',

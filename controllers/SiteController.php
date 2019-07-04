@@ -62,7 +62,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        Yii::$app->auth->can('userAccess');
         return $this->render('index');
     }
 
