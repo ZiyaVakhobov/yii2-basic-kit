@@ -30,7 +30,7 @@ class AuthRelation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'auth_item_id'], 'default', 'value' => null],
+            [['user_id', 'auth_item_id'], 'required'],
             [['user_id', 'auth_item_id'], 'integer'],
             [['auth_item_id'], 'exist', 'skipOnError' => true, 'targetClass' => AuthItem::className(), 'targetAttribute' => ['auth_item_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

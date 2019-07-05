@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Role;
 use lo\widgets\modal\ModalAjax;
 use yii\helpers\Html;
 use kartik\grid\GridView;
@@ -53,6 +54,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'name',
                     'description',
+                    [
+                        'class' => \yii\grid\DataColumn::class,
+                        'format' => 'raw',
+                        'value' => function(Role $role) {
+                            $tr = '';
+                            foreach ($role->roleItems as $item)
+                            {
+                                $tr .="<tr><td>{$item->authItem->name}</td></tr>";
+                            }
+                            return Html::tag('table',$tr,[
+                                'class' => 'table table-responsive table-stripped'
+                            ]);
+                        }
+                    ],
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
                 'containerOptions' => ['style' => 'overflow: auto'], // only set when $responsive = false

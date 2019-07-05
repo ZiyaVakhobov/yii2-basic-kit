@@ -10,7 +10,8 @@
                         'icon' => 'group',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Index', 'icon' => 'id-card', 'url' => ['/user/auth/index'],],
+                            ['label' => 'Users', 'icon' => 'id-card', 'url' => ['/admin/user/user/index']],
+                            ['label' => 'Roles', 'icon' => 'id-card', 'url' => ['/admin/user/role/index']],
                         ],
                     ],
 //                    [

@@ -2,18 +2,19 @@
 
 namespace app\src\admin\modules\user\controllers;
 
-use app\src\admin\modules\user\forms\RoleForm;
+use app\src\admin\modules\user\forms\UserForm;
+use Mpdf\Tag\U;
 use Yii;
-use app\models\Role;
+use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RoleController implements the CRUD actions for Role model.
+ * UserController implements the CRUD actions for User model.
  */
-class RoleController extends Controller
+class UserController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,13 +32,13 @@ class RoleController extends Controller
     }
 
     /**
-     * Lists all Role models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Role::find(),
+            'query' => User::find(),
         ]);
 
         return $this->render('index', [
@@ -46,7 +47,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Displays a single Role model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,32 +60,30 @@ class RoleController extends Controller
     }
 
     /**
-     * Creates a new Role model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new RoleForm(new Role());
+        $model = new UserForm(new User());
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
-
         if (Yii::$app->request->isAjax) {
-             return $this->renderAjax('create', [
-            'model' => $model,
-        ]);
-        }else {
-             return $this->render('create', [
-            'model' => $model,
-        ]);
 
+            return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Updates an existing Role model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -92,33 +91,28 @@ class RoleController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = new RoleForm($this->findModel($id));
+        $model = new UserForm($this->findModel($id));
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
-
         if (Yii::$app->request->isAjax) {
+
             return $this->renderAjax('update', [
-            'model' => $model,
-        ]);
-
-        } else {
-            return $this->render('update', [
-            'model' => $model,
-        ]);
-
+                'model' => $model,
+            ]);
         }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Deletes an existing Role model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-     * @throws \Throwable
-     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
@@ -128,15 +122,15 @@ class RoleController extends Controller
     }
 
     /**
-     * Finds the Role model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Role the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Role::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 
